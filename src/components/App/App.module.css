@@ -1,4 +1,4 @@
-.appContainer {
+.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -7,13 +7,4 @@
   margin: auto;
   padding: 30px;
   background-color: rgb(187, 222, 238);
-}
-
-.navList {
-  padding: 10px 20px;
-
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 10px;
 }
