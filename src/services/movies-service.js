@@ -27,7 +27,7 @@ export async function getMovieDetail(id) {
     overview,
     release_date,
     vote_average,
-    belongs_to_collection,
+    poster_path,
   } = data;
   return {
     title: original_title,
@@ -35,6 +35,6 @@ export async function getMovieDetail(id) {
     overview,
     year: release_date.substring(0, 4),
     score: Math.round(vote_average * 10),
-    imageUrl: `${IMAGES_BASE_URL}${belongs_to_collection.poster_path}`,
+    imageUrl: `${IMAGES_BASE_URL}${poster_path}`,
   };
 }
