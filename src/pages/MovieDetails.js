@@ -17,7 +17,6 @@ const MovieDetails = () => {
   if (!movie) return <div>Loading...</div>;
 
   const { title, genres, overview, year, score, imageUrl } = movie;
-  console.log(movie);
 
   return (
     <div className={css.container}>

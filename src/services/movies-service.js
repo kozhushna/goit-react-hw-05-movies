@@ -1,4 +1,5 @@
 import axios from 'axios';
+import profileIcon from '../images/profile-icon.png';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 const API_KEY = '64f4e1c154d206124ca10bd40c3205d8';
@@ -37,4 +38,19 @@ export async function getMovieDetail(id) {
     score: Math.round(vote_average * 10),
     imageUrl: `${IMAGES_BASE_URL}${poster_path}`,
   };
+}
+
+export async function getCredits(id) {
+  const { data } = await axios.get(`/movie/${id}/credits`, {
+    params: {
+      api_key: API_KEY,
+      language: 'en-US',
+    },
+  });
+  return data.cast.map(({ name, character, profile_path, credit_id }) => ({
+    name,
+    character,
+    imageUrl: profile_path ? `${IMAGES_BASE_URL}${profile_path}` : profileIcon,
+    id: credit_id,
+  }));
 }
