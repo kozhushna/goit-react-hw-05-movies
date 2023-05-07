@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Loader from 'components/Loader/Loader';
 import { getCredits } from 'services/movies-service';
+import css from './Cast.module.css';
 
 const Cast = () => {
   const [cast, setCast] = useState([]);
@@ -16,7 +17,7 @@ const Cast = () => {
         setCast(data);
       })
       .catch(error => {
-        setError("We don't have any casts for this movie");
+        setError(error.message);
       })
       .finally(() => {
         setIsLoading(false);
@@ -29,9 +30,9 @@ const Cast = () => {
   return (
     <>
       {isLoading && <Loader />}
-      <ul>
+      <ul className={css.castList}>
         {cast.map(({ name, character, imageUrl, id }) => (
-          <li key={id}>
+          <li key={id} className={css.castItem}>
             <img src={imageUrl} alt={name} width={100} />
             <p>{name}</p>
             <p>Character: {character}</p>

@@ -48,6 +48,9 @@ export async function getCredits(id) {
       language: 'en-US',
     },
   });
+  if (!data.cast.length) {
+    throw Error("We don't have any casts for this movie");
+  }
 
   return data.cast.map(({ name, character, profile_path, credit_id }) => ({
     name,
@@ -64,8 +67,10 @@ export async function getReviews(id) {
       language: 'en-US',
     },
   });
-  if (!data.total_results)
+  if (!data.total_results) {
     throw Error("We don't have any reviews for this movie");
+  }
+
   return data.results.map(({ author, content, id }) => ({
     author,
     content,

@@ -6,18 +6,20 @@ import { Suspense } from 'react';
 const Header = () => {
   return (
     <>
-      <div className={css.container}>
-        <nav>
-          <ul className={headerCss.navList}>
-            <li>
-              <NavLink to="/">Home</NavLink>
-            </li>
-            <li>
-              <NavLink to="/movies">Movies</NavLink>
-            </li>
-          </ul>
-        </nav>
-      </div>
+      <header>
+        <div className={css.container}>
+          <nav>
+            <ul className={headerCss.navList}>
+              <li>
+                <NavLink to="/">Home</NavLink>
+              </li>
+              <li>
+                <NavLink to="/movies">Movies</NavLink>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
       <Suspense>
         <Outlet />
       </Suspense>

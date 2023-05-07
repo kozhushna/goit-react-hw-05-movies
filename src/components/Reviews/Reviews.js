@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import Loader from 'components/Loader/Loader';
 import { getReviews } from 'services/movies-service';
 
+import css from './Reviews.module.css';
+
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
 
@@ -33,8 +35,8 @@ const Reviews = () => {
       <ul>
         {reviews.map(({ author, content, id }) => (
           <li key={id}>
-            <h3>{author}</h3>
-            <p>{content}</p>
+            <h3 className={css.reviewCaption}>{author}</h3>
+            <p className={css.reviewText}>{content}</p>
           </li>
         ))}
       </ul>

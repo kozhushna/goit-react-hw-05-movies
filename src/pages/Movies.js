@@ -35,11 +35,13 @@ const Movies = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className={css.container}>
-      {isLoading && <Loader />}
-      <SearchForm onSubmit={onSubmit} />
-      <MoviesList movies={searchMovies} />
-    </div>
+    <main>
+      <div className={css.container}>
+        {isLoading && <Loader />}
+        <SearchForm onSubmit={onSubmit} />
+        <MoviesList movies={searchMovies} />
+      </div>
+    </main>
   );
 };
 

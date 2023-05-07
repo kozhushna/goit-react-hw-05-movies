@@ -28,10 +28,12 @@ const Home = () => {
   if (!trendingMovies.length) return <Loader />;
 
   return (
-    <div className={css.container}>
-      {isLoading && <Loader />}
-      <MoviesList movies={trendingMovies} />
-    </div>
+    <main>
+      <div className={css.container}>
+        {isLoading && <Loader />}
+        <MoviesList movies={trendingMovies} />
+      </div>
+    </main>
   );
 };
 

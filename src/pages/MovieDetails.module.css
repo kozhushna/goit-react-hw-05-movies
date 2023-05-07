@@ -1,0 +1,12 @@
+.movieWrapper {
+  display: flex;
+  gap: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid gray;
+}
+
+.movieContent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
