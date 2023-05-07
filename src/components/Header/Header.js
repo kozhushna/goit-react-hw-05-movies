@@ -1,6 +1,7 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import css from '../App/App.module.css';
 import headerCss from './Header.module.css';
+import { Suspense } from 'react';
 
 const Header = () => {
   return (
@@ -17,7 +18,9 @@ const Header = () => {
           </ul>
         </nav>
       </div>
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
