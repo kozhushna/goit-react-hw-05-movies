@@ -9,6 +9,7 @@ import css from '../components/App/App.module.css';
 const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
   const { movieId } = useParams();
   const location = useLocation();
   const goBackUrl = location?.state?.from || '/';
@@ -18,11 +19,21 @@ const MovieDetails = () => {
       .then(data => {
         setMovie(data);
       })
+      .catch(error => {
+        setError('Page not found');
+      })
       .finally(() => {
         setIsLoading(false);
       });
-  }, [movieId]);
+  }, [movieId, location]);
 
+  if (error) {
+    return (
+      <div className={css.container}>
+        <div>{error}</div>
+      </div>
+    );
+  }
   if (!movie) return <Loader />;
 
   const { title, genres, overview, year, score, imageUrl } = movie;
@@ -30,7 +41,7 @@ const MovieDetails = () => {
   return (
     <div className={css.container}>
       {isLoading && <Loader />}
-      <GoBackButton path={goBackUrl}>Back to movies</GoBackButton>
+      <GoBackButton path={goBackUrl}>Go back</GoBackButton>
       <img src={imageUrl} alt={title} width={200} />
       <h2>
         {title} ({year})
