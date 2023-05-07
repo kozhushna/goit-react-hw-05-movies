@@ -12,7 +12,7 @@ const MovieDetails = () => {
   const [error, setError] = useState('');
   const { movieId } = useParams();
   const location = useLocation();
-  const goBackUrl = location?.state?.from || '/';
+  const goBackUrl = location?.state?.from || { pathname: '/' };
   useEffect(() => {
     setIsLoading(true);
     getMovieDetail(movieId)
