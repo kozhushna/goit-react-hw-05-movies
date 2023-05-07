@@ -54,3 +54,18 @@ export async function getCredits(id) {
     id: credit_id,
   }));
 }
+
+export async function getReviews(id) {
+  const { data } = await axios.get(`/movie/${id}/reviews`, {
+    params: {
+      api_key: API_KEY,
+      language: 'en-US',
+      page: 1,
+    },
+  });
+  return data.results.map(({ author, content, id }) => ({
+    author,
+    content,
+    id,
+  }));
+}
