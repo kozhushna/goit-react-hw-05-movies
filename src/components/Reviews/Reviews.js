@@ -5,6 +5,7 @@ import { getReviews } from 'services/movies-service';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
+
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
@@ -16,7 +17,7 @@ const Reviews = () => {
         setReviews(data);
       })
       .catch(error => {
-        setError("We don't have any reviews for this movie");
+        setError(error.message);
       })
       .finally(() => {
         setIsLoading(false);

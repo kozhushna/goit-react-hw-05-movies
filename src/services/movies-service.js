@@ -64,6 +64,8 @@ export async function getReviews(id) {
       language: 'en-US',
     },
   });
+  if (!data.total_results)
+    throw Error("We don't have any reviews for this movie");
   return data.results.map(({ author, content, id }) => ({
     author,
     content,
