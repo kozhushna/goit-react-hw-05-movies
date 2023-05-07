@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import css from '../components/App/App.module.css';
+import MoviesList from 'components/MoviesList/MoviesList';
 
 import { getTrendingMovies } from '../services/movies-service';
 
@@ -12,19 +12,9 @@ const Home = () => {
     });
   }, []);
 
-  const location = useLocation();
-
   return (
     <div className={css.container}>
-      <ul>
-        {trendingMovies.map(({ id, title }) => (
-          <li key={id}>
-            <Link to={`/movies/${id}`} state={{ from: location }}>
-              {title}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <MoviesList movies={trendingMovies} />
     </div>
   );
 };

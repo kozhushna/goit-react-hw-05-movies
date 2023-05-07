@@ -4,15 +4,21 @@ import { getCredits } from 'services/movies-service';
 
 const Cast = () => {
   const [cast, setCast] = useState([]);
+  const [error, setError] = useState('');
   const { movieId } = useParams();
 
   useEffect(() => {
-    getCredits(movieId).then(data => {
-      setCast(data);
-    });
+    getCredits(movieId)
+      .then(data => {
+        setCast(data);
+      })
+      .catch(error => {
+        setError("We don't have any casts for this movie");
+      });
   }, [movieId]);
 
-  if (!cast) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
+  if (!cast.length) return <div>Loading...</div>;
 
   return (
     <ul>

@@ -16,7 +16,7 @@ const Reviews = () => {
         setError("We don't have any reviews for this movie");
       });
   }, [movieId]);
-  console.log(reviews);
+
   if (error) return <div>{error}</div>;
   if (!reviews.length) return <div>Loading...</div>;
 

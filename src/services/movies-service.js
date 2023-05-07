@@ -1,5 +1,6 @@
 import axios from 'axios';
 import profileIcon from '../images/profile-icon.png';
+import noImageIcon from '../images/no-image-icon.png';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 const API_KEY = '64f4e1c154d206124ca10bd40c3205d8';
@@ -36,7 +37,7 @@ export async function getMovieDetail(id) {
     overview,
     year: release_date.substring(0, 4),
     score: Math.round(vote_average * 10),
-    imageUrl: `${IMAGES_BASE_URL}${poster_path}`,
+    imageUrl: poster_path ? `${IMAGES_BASE_URL}${poster_path}` : noImageIcon,
   };
 }
 
@@ -47,6 +48,7 @@ export async function getCredits(id) {
       language: 'en-US',
     },
   });
+
   return data.cast.map(({ name, character, profile_path, credit_id }) => ({
     name,
     character,
@@ -60,7 +62,6 @@ export async function getReviews(id) {
     params: {
       api_key: API_KEY,
       language: 'en-US',
-      page: 1,
     },
   });
   return data.results.map(({ author, content, id }) => ({
@@ -68,4 +69,15 @@ export async function getReviews(id) {
     content,
     id,
   }));
+}
+
+export async function getSearchMovies(query) {
+  const { data } = await axios.get(`/search/movie`, {
+    params: {
+      api_key: API_KEY,
+      language: 'en-US',
+      query,
+    },
+  });
+  return data.results.map(movie => ({ id: movie.id, title: movie.title }));
 }
