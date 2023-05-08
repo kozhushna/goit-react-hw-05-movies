@@ -1,8 +1,27 @@
 .castList {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
+  gap: 10px;
 }
 
 .castItem {
-  flex-basis: calc(100% / 5);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+  align-items: center;
+  padding: 5px;
+  width: 200px;
+  font-size: 14px;
+  border: 1px solid rgb(124, 16, 16);
+  border-radius: 4px;
+}
+
+.castInfo {
+  font-weight: 700;
+}
+
+.castInfoWrapper {
+  text-align: center;
 }

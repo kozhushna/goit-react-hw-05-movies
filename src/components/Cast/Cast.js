@@ -34,8 +34,10 @@ const Cast = () => {
         {cast.map(({ name, character, imageUrl, id }) => (
           <li key={id} className={css.castItem}>
             <img src={imageUrl} alt={name} width={100} />
-            <p>{name}</p>
-            <p>Character: {character}</p>
+            <div className={css.castInfoWrapper}>
+              <p className={css.castInfo}>{name}</p>
+              <p>Character: {character}</p>
+            </div>
           </li>
         ))}
       </ul>
