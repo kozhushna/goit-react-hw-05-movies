@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import css from './SearchForm.module.css';
 
 const SearchForm = ({ onSubmit }) => {
   const [query, setQuery] = useState('');
@@ -10,17 +11,19 @@ const SearchForm = ({ onSubmit }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (!query) {
+    const searchQuery = query.trim();
+    if (!searchQuery) {
       alert('Please input text for serch.');
       return;
     }
-    onSubmit(query);
+    onSubmit(searchQuery.toLowerCase());
     setQuery('');
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={css.form} onSubmit={handleSubmit}>
       <input
+        className={css.input}
         type="text"
         autoComplete="off"
         autoFocus
@@ -29,7 +32,9 @@ const SearchForm = ({ onSubmit }) => {
         value={query}
         onChange={handleSearchQueryChange}
       />
-      <button type="submit">Search</button>
+      <button type="submit" className={css.button}>
+        Search
+      </button>
     </form>
   );
 };

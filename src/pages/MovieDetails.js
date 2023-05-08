@@ -1,4 +1,4 @@
-import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
+import { NavLink, Outlet, useParams, useLocation } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
 import { getMovieDetail } from '../services/movies-service';
 import GoBackButton from 'components/GoBackButton/GoBackButton';
@@ -14,6 +14,7 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const location = useLocation();
   const goBackUrl = useRef(location?.state?.from ?? { pathname: '/' });
+
   useEffect(() => {
     setIsLoading(true);
     getMovieDetail(movieId)
@@ -55,15 +56,15 @@ const MovieDetails = () => {
             <p>{overview}</p>
             <h3>Genres</h3>
             <p>{genres.join(' ')}</p>
-            <p>Additional information</p>
           </div>
         </div>
-        <ul>
-          <li>
-            <Link to="cast">Cast</Link>
+        <h4>Additional information</h4>
+        <ul className={detailCss.detailList}>
+          <li className={detailCss.detailItem}>
+            <NavLink to="cast">Cast</NavLink>
           </li>
-          <li>
-            <Link to="reviews">Reviews</Link>
+          <li className={detailCss.detailItem}>
+            <NavLink to="reviews">Reviews</NavLink>
           </li>
         </ul>
         <Outlet />

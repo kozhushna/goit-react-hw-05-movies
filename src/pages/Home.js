@@ -31,6 +31,7 @@ const Home = () => {
     <main>
       <div className={css.container}>
         {isLoading && <Loader />}
+        <h1>Trending today</h1>
         <MoviesList movies={trendingMovies} />
       </div>
     </main>

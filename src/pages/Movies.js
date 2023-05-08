@@ -15,13 +15,14 @@ const Movies = () => {
   useEffect(() => {
     const query = searchParams.get('query');
     if (!query) return;
+    setError('');
     setIsLoading(true);
     getSearchMovies(query)
       .then(movies => {
         setSearchMovies(movies);
       })
       .catch(error => {
-        setError("We don't have any results");
+        setError(error.message);
       })
       .finally(() => {
         setIsLoading(false);
@@ -32,14 +33,12 @@ const Movies = () => {
     setSearchParams({ query });
   };
 
-  if (error) return <div>{error}</div>;
-
   return (
     <main>
       <div className={css.container}>
         {isLoading && <Loader />}
         <SearchForm onSubmit={onSubmit} />
-        <MoviesList movies={searchMovies} />
+        {error ? <div>{error}</div> : <MoviesList movies={searchMovies} />}
       </div>
     </main>
   );

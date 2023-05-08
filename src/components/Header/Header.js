@@ -6,7 +6,7 @@ import { Suspense } from 'react';
 const Header = () => {
   return (
     <>
-      <header>
+      <header className={headerCss.header}>
         <div className={css.container}>
           <nav>
             <ul className={headerCss.navList}>

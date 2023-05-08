@@ -13,7 +13,10 @@ export async function getTrendingMovies() {
     },
   });
 
-  return data.results.map(movie => ({ id: movie.id, title: movie.title }));
+  return data.results.map(movie => ({
+    id: movie.id,
+    title: movie.title ?? movie.name,
+  }));
 }
 
 export async function getMovieDetail(id) {
@@ -31,6 +34,7 @@ export async function getMovieDetail(id) {
     vote_average,
     poster_path,
   } = data;
+
   return {
     title: original_title,
     genres: genres.map(ganre => ganre.name),
@@ -86,5 +90,11 @@ export async function getSearchMovies(query) {
       query,
     },
   });
+  if (!data.total_results) {
+    throw Error(
+      'Sorry, there are no movies matching your search query. Please try again.'
+    );
+  }
+
   return data.results.map(movie => ({ id: movie.id, title: movie.title }));
 }

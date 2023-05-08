@@ -19,6 +19,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 20px;
 }
 
 code {
@@ -52,8 +53,14 @@ ol {
 
 a {
   text-decoration: none;
+  color: rgb(124, 16, 16);
+}
+
+a:hover,
+a:focus {
+  color: #4633ee;
 }
 
 a.active {
-  color: tomato;
+  color: rgb(238, 65, 34);
 }
